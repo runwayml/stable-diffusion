@@ -65,13 +65,13 @@ The weights are available via [the CompVis](https://huggingface.co/CompVis) and 
 
 We currently provide the following checkpoints:
 
-- [`sd-v1-1.ckpt`](https://huggingface.co/compvis): 237k steps at resolution `256x256` on [laion2B-en](https://huggingface.co/datasets/laion/laion2B-en).
+- [`sd-v1-1.ckpt`](https://huggingface.co/CompVis/stable-diffusion-v1-1): 237k steps at resolution `256x256` on [laion2B-en](https://huggingface.co/datasets/laion/laion2B-en).
   194k steps at resolution `512x512` on [laion-high-resolution](https://huggingface.co/datasets/laion/laion-high-resolution) (170M examples from LAION-5B with resolution `>= 1024x1024`).
-- [`sd-v1-2.ckpt`](https://huggingface.co/compvis): Resumed from `sd-v1-1.ckpt`.
+- [`sd-v1-2.ckpt`](https://huggingface.co/CompVis/stable-diffusion-v1-2): Resumed from `sd-v1-1.ckpt`.
   515k steps at resolution `512x512` on [laion-aesthetics v2 5+](https://laion.ai/blog/laion-aesthetics/) (a subset of laion2B-en with estimated aesthetics score `> 5.0`, and additionally
 filtered to images with an original size `>= 512x512`, and an estimated watermark probability `< 0.5`. The watermark estimate is from the [LAION-5B](https://laion.ai/blog/laion-5b/) metadata, the aesthetics score is estimated using the [LAION-Aesthetics Predictor V2](https://github.com/christophschuhmann/improved-aesthetic-predictor)).
-- [`sd-v1-3.ckpt`](https://huggingface.co/compvis): Resumed from `sd-v1-2.ckpt`. 195k steps at resolution `512x512` on "laion-aesthetics v2 5+" and 10\% dropping of the text-conditioning to improve [classifier-free guidance sampling](https://arxiv.org/abs/2207.12598).
-- [`sd-v1-4.ckpt`](https://huggingface.co/compvis): Resumed from `sd-v1-2.ckpt`. 225k steps at resolution `512x512` on "laion-aesthetics v2 5+" and 10\% dropping of the text-conditioning to improve [classifier-free guidance sampling](https://arxiv.org/abs/2207.12598).
+- [`sd-v1-3.ckpt`](https://huggingface.co/CompVis/stable-diffusion-v1-3): Resumed from `sd-v1-2.ckpt`. 195k steps at resolution `512x512` on "laion-aesthetics v2 5+" and 10\% dropping of the text-conditioning to improve [classifier-free guidance sampling](https://arxiv.org/abs/2207.12598).
+- [`sd-v1-4.ckpt`](https://huggingface.co/CompVis/stable-diffusion-v1-4): Resumed from `sd-v1-2.ckpt`. 225k steps at resolution `512x512` on "laion-aesthetics v2 5+" and 10\% dropping of the text-conditioning to improve [classifier-free guidance sampling](https://arxiv.org/abs/2207.12598).
 - [`sd-v1-5.ckpt`](https://huggingface.co/runwayml/stable-diffusion-v1-5): Resumed from `sd-v1-2.ckpt`. 595k steps at resolution `512x512` on "laion-aesthetics v2 5+" and 10\% dropping of the text-conditioning to improve [classifier-free guidance sampling](https://arxiv.org/abs/2207.12598).
 - [`sd-v1-5-inpainting.ckpt`](https://huggingface.co/runwayml/stable-diffusion-inpainting): Resumed from `sd-v1-5.ckpt`. 440k steps of inpainting training at resolution `512x512` on "laion-aesthetics v2 5+" and 10\% dropping of the text-conditioning to improve [classifier-free guidance sampling](https://arxiv.org/abs/2207.12598). For inpainting, the UNet has 5 additional input channels (4 for the encoded masked-image and 1 for the mask itself) whose weights were zero-initialized after restoring the non-inpainting checkpoint. During training, we generate synthetic masks and in 25\% mask everything.
 
