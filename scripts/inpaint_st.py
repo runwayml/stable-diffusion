@@ -27,6 +27,13 @@ wm = "StableDiffusionV1-Inpainting"
 wm_encoder = WatermarkEncoder()
 wm_encoder.set_watermark('bytes', wm.encode('utf-8'))
 
+def get_device():
+    if(torch.cuda.is_available()):
+        return torch.device("cuda")
+    elif(torch.backends.mps.is_available()):
+        return torch.device("mps")
+    return torch.device("cpu")
+
 def numpy_to_pil(images):
     """
     Convert a numpy image or a batch of images to a PIL image.
@@ -59,7 +66,7 @@ def initialize_model(config, ckpt):
 
     model.load_state_dict(torch.load(ckpt)["state_dict"], strict=False)
 
-    device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+    device = get_device()
     model = model.to(device)
     sampler = DDIMSampler(model)
 
@@ -95,7 +102,7 @@ def make_batch_sd(
 
 
 def inpaint(sampler, image, mask, prompt, seed, scale, ddim_steps, num_samples=1, w=512, h=512):
-    device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+    device = get_device()
     model = sampler.model
 
     prng = np.random.RandomState(seed)
