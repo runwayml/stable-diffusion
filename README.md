@@ -1,5 +1,39 @@
 ## Stable Diffusion
 
+
+## Build container
+```
+docker build -t $(whoami)/stable_diffusion .
+```
+
+## Run container
+```
+docker run \
+--rm -it \
+--gpus all \
+--mount type=bind,source="$PWD",target=/app \
+--mount type=bind,source="/home",target=/home \
+--mount type=bind,source="/media",target=/media \
+--privileged \
+$(whoami)/stable_diffusion
+```
+
+## Run inpainting by COCO
+```
+python inpaint_from_coco.py \
+--device_id <device_id> \
+--src_images_dir <src_images_dir> \
+--coco_ann_path <coco_ann_path> \
+--generated_images_dir <generated_images_dir> \
+--prompts_file_path <prompts_file_path> \
+--logs_file_path <logs_file_path> \
+--crop_size <crop_size(optional, default 640)> \
+--num_infer_steps <num_infer_steps(optional, default 60)> \
+--generate_prompt <generate_prompt(optional)> \
+--base_prompt <base_prompt> \
+--regexpx_group <regexpx_group(optional)> 
+```
+
 *[Stable Diffusion](https://github.com/compvis/stable-diffusion) builds upon our previous work with the [CompVis group](https://ommer-lab.com/):*
 
 [**High-Resolution Image Synthesis with Latent Diffusion Models**](https://ommer-lab.com/research/latent-diffusion-models/)<br/>
